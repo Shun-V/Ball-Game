@@ -10,6 +10,7 @@ board_axes = axes;
 set(board_axes, 'position', [0.05, 0.05, 0.9, 0.9], 'color', [150, 200, 200]/255);
 set(board_axes, 'xlim', [-1 1], 'ylim', [-1 1], 'xtick', [], 'ytick', []);
 hold(board_axes, "on");
+alpha(0.5)
 %% Plot Edges
 plot(repmat(get(board_axes, 'xlim'),2,1), bsxfun(@times, [-1 -1], [1, -1]'), 'r');
 plot(repmat(get(board_axes, 'xlim'),2,1), bsxfun(@times, [-1 -1], [1, -1]')', 'r');
@@ -20,8 +21,8 @@ h(2) = plot([0,0],get(board_axes,'ylim'),'w--');
 %% Set title and time
 text_title = text(0, 1.06, 'Ball Game Example');
 set(text_title, 'color', 'k', 'fontsize', 20, 'HorizontalAlignment', 'center');
-text_time = text(-1, 1.06, datestr(datetime('now')))
-set(text_time, 'color', 'b', 'fontsize', 16)
+%text_time = text(-1, 1.06, datestr(datetime('now')))
+%set(text_time, 'color', 'b', 'fontsize', 16)
 %% Define Ball
 angles = linspace(0.25*pi, 0.75*pi, 100);
 %angles = linspace(0, pi, 100);
@@ -35,10 +36,11 @@ ball_dir = [cos(ball_angle)/speed_x sin(ball_angle)/speed_y];
 ball = plot(ball_pos(1), ball_pos(2),'o');
 set(ball, 'markersize', 20, 'markerfacecolor','k');
 %% Start
-game_over = deal(false)
-start_time = datetime('now')
-global t0
-t0 = now
+game_over = deal(false);
+start_time = datetime('now');
+global t0;
+t0 = now;
+%% Gaming
 while true
     % update boundry move direction
     % ball_dir(abs(ball_pos) > 0.98) = - ball_dir(abs(ball_pos) > 0.98);
@@ -82,10 +84,11 @@ while true
         delete(text_over);delete(text_score);delete(text_count);
         set(board_axes, 'color', [150, 200, 200]/255);
         game_over = deal(false);
-        start_time = datetime('now')
+        start_time = datetime('now');
         t0 = now;
     end
 end
+%% Functions
 function func(~,~)
     global t0 ball_dir;
     t0 = now;
