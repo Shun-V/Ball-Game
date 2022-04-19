@@ -55,7 +55,7 @@ while true
     end
     % update position
     ball_gra = [0 -1e3*(now - t0)];
-    ball_pos = ball_pos + ball_dir;
+    ball_pos = ball_pos + ball_dir + ball_gra;
     set(ball, 'xdata', ball_pos(1), 'ydata', ball_pos(2));
     drawnow;
     % Show Game Score
@@ -68,6 +68,7 @@ while true
     end
 end
 function func(~,~)
-    global t0
+    global t0 ball_dir
     t0 = now
+    ball_dir(2) = abs(ball_dir(2))
 end
