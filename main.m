@@ -5,7 +5,7 @@ monitor_size = get(0, "ScreenSize");
 %% Create Board
 board_figure = figure('position', [monitor_size(3:4)*0.3, monitor_size(3:4)*0.4], 'MenuBar','none');
 set(board_figure, 'resize', 'off', 'color', 'w');
-%% Set axis
+%% Set axes
 board_axes = axes;
 set(board_axes, 'position', [0.05, 0.05, 0.9, 0.9], 'color', [150, 200, 200]/255);
 set(board_axes, 'xlim', [-1 1], 'ylim', [-1 1], 'xtick', [], 'ytick', []);
